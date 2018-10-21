@@ -17,7 +17,6 @@ export const fetchEvents = () => dispatch => {
 	.then(res =>
         res.json()
 	).then(data => {
-		console.log(data.Events)
 		dispatch(eventsReceived(data.Events))
 	}).catch(error=>console.log("the error received is ", error))
 }
