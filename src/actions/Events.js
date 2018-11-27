@@ -1,23 +1,20 @@
 import { url } from '../utils/routes';
 
-//actionTypes
+// actionTypes
 export const actionType = {
-	EVENTS_FETCHED: 'EVENTS_FETCHED'
-}
+  FETCHING_EVENTS: 'FETCHING_EVENTS',
+};
 
-//action creator
+// action creator
 export const eventsReceived = events => ({
-	type:actionType.EVENTS_FETCHED,
-	events
-})
+  type: actionType.FETCHING_EVENTS,
+  events,
+});
 
-//dispatcher
-export const fetchEvents = () => dispatch => {
-	fetch(url.events)
-	.then(res =>
-        res.json()
-	).then(data => {
-		dispatch(eventsReceived(data.Events))
-	}).catch(error=>console.log("the error received is ", error))
-}
-
+// dispatcher
+export const fetchEvents = () => (dispatch) => {
+  fetch(url.events)
+    .then(res => res.json()).then((data) => {
+      dispatch(eventsReceived(data.Events));
+    }).catch(error => console.log('the error received is ', error));
+};

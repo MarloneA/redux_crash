@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEvents } from '../actions/Events';
 
-class Increment extends React.Component {
+class Increment extends Component {
 
     state = {
         score: 0,
@@ -37,6 +37,8 @@ class Increment extends React.Component {
     }
 
     render() {
+        const { events } = this.props;
+
         return (
             <div>
                 <h1>Score: {this.state.score}</h1>
@@ -48,6 +50,12 @@ class Increment extends React.Component {
                     <label>Enter text</label>
                     <input onChange={this.handleChange} value={this.state.value}/>
                 </form>
+                {events.map(event => (
+                    <div>
+                        <h4>{event.title}</h4>
+                        <p>{event.description}</p>
+                    </div>
+                ))}
             </div>
         );
     }
